@@ -43,14 +43,12 @@
                   </div>
                   
                   <fieldset>
-                    <legend>
+                    <legend class="text-lg">
                       Choices
                     </legend>
-                    <small>
-                      Give choices that give you the most insight into your question
-                    </small>  
+                      
 
-                    <div class="input-group">
+                    <div class="input-group pt-5">
                       <div class="flex flex-col mb-6">
                         <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 1</label>
                         <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 1">
@@ -66,7 +64,7 @@
 
                     <div class="input-group">
                       <div class="flex flex-col mb-6">
-                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 1</label>
+                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 2</label>
                         <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 2">
 
                         @error('answers.1.answer')
@@ -80,8 +78,8 @@
 
                     <div class="input-group">
                       <div class="flex flex-col mb-6">
-                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 2</label>
-                        <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 2">
+                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 3</label>
+                        <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 3">
 
                         @error('answers.2.answer')
                         <small class="relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg" role="alert">
@@ -94,8 +92,8 @@
 
                     <div class="input-group">
                       <div class="flex flex-col mb-6">
-                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 3</label>
-                        <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 3">
+                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 4</label>
+                        <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 4">
 
                         @error('answers.3.answer')
                         <small class="relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg" role="alert">
@@ -108,8 +106,8 @@
 
                     <div class="input-group">
                       <div class="flex flex-col mb-6">
-                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 4</label>
-                        <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 4">
+                        <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="answer">Answer 5</label>
+                        <input class="border py-2 px-3 text-grey-darkest" type="text" name="answers[][answer]" id="answer" placeholder="Enter choice 5">
 
                         @error('answers.4.answer')
                         <small class="relative py-3 pl-4 pr-10 leading-normal text-red-700 bg-red-100 rounded-lg" role="alert">

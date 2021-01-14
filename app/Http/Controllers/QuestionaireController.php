@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 // use App\Questionaire;
 // use \App\Questionaire;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\QuestionaireController;
+use App\Http\Controllers\Questionaire;
+
+
 class QuestionaireController extends Controller
 {
     public function create()
@@ -26,30 +30,26 @@ class QuestionaireController extends Controller
     	 $data['user_id'] = auth()->user()->id;
 
     	 $questionaire = \App\Models\Questionaire::create($data);
-                         // \App\Models\User::factory(10)->create();
-
-		// $questionaire = auth()->user()->questionaires()->create($data);
-
     	 return redirect('/questionaires/'.$questionaire->id);
-    	// return view('questionaire.create');
-    	// return back();
 
     }
 
 
     public function show( \App\Models\Questionaire $questionaire)
     {
-        $questionaire->load('questions.answers');
-    	return view('questionaire.show', compact('questionaire'));
-        // return view('questionaire.show', compact('questionaires'));
+        $questionaire->load('questions.answers.responses');
+        $questionaire_id = $questionaire->id;
+
+        $results = \App\Models\Question::with(['questionaire'])->where('questionaire_id', $questionaire_id);
+        $questionaires = $results->get();
+
+
+
+        return view('questionaire.show', compact('questionaire', 'questionaires'));
+  
     }
 
 
-
-    // public function show(Questionaire $id)
-    // {
-    //     return view('questionaires.show', ['questionaire' => $id]);
-    // }
-
+   
 
 }

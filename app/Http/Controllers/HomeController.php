@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use \App\Http\Controllers\QuestionaireController;
+use App\Http\Controllers\QuestionaireController;
+use App\Http\Controllers\Questionaire;
+use App\Models\User;
+
 
 class HomeController extends Controller
 {
@@ -24,6 +27,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        // dd('dd');
+        $user = auth()->user(); 
+        $results = \App\Models\Questionaire::with(['user'])->where('user_id', $user->id);
+        $questionaires = $results->get();
+
+        return view('home', compact('questionaires'));
+
     }
+   
+
 }

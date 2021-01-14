@@ -17,7 +17,8 @@ Route::get('/', function () {
     return view('home');
 });
 
-
+Route::get('/', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
+	
 Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -30,6 +31,10 @@ Route::get('/questionaires/{questionaire}',   [\App\Http\Controllers\Questionair
 
 Route::get('/questionaires/{questionaire}/questions/create',   [\App\Http\Controllers\QuestionController::class, 'create'])->name('create');
 
+Route::post('/questionaires/{questionaire}/questions/{question}',   [\App\Http\Controllers\QuestionController::class, 'destroy'])->name('delete');
+
 Route::post('/questionaires/{questionaire}/questions',       [\App\Http\Controllers\QuestionController::class, 'store'])->name('store');
 
 Route::get('/surveys/{questionaire}-{slug}',       [\App\Http\Controllers\SurveyController::class, 'show'])->name('show');
+
+Route::post('/surveys/{questionaire}-{slug}',       [\App\Http\Controllers\SurveyController::class, 'store'])->name('store');

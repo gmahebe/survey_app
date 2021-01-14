@@ -21,28 +21,40 @@
                     
                     @foreach($questionaire->questions as $key => $question)
                       <div class="">
-                         <div></br><strong>{{ $key+1 }}</strong>  :  {{ $question->question }} </div>
+                         <div class="mt-4"></br><strong>{{ $key+1 }}</strong>  :  {{ $question->question }} </div>
+
+                         @error('responses.' . $key . '.answer_id')
+                            <small class="text-red-600 mt-3">
+                              {{ $message }}
+                            </small>
+                         @enderror
+
                         <ul class="px-0" style="margin-top: 15px">
                         @foreach($question->answers as $answer)
-                          <li class="border list-none rounded-sm px-3 py-3">  
-                            <input type="radio" name="responses[{{ $key }}] {{$answer->id}}" value="{{ $answer->id }}" id=" {{ $answer->id  }}">
-                            {{ $answer->answer }} </li>
+                          <label for="answer{{ $answer->id }}" >
+                            <li class="border list-none rounded-sm px-3 py-3">  
+                              <input type="radio" name="responses[{{ $key }}][answer_id]"  id="answer{{ $answer->id }}" value="{{ $answer->id }}" class="mr-2">
+                              {{ old('responses.' . $key . '.answer_id') == $answer->id ? 'checked' : '' }}
+                              {{ $answer->answer }} 
+                              <input type="hidden" name="responses[{{ $key }}][question_id]" value="{{$question->id}}">
+                            </li>
+                          </label>
                         @endforeach
                         </ul>
                       </div>
                     @endforeach
                   </div>  
-                  <div class="">
-                <div class="col-span-6 sm:col-span-3 py-3">
-                  <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                  <input type="text" name="name" id="name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm xl:text-xl border-gray-300 rounded-md">
-                </div>
+                  
+                  <div class="col-span-6 sm:col-span-3 py-3 mt-5">
+                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" name="survey[name]" id="name" autocomplete="given-name" placeholder="Name" class="p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm xl:text-xl border-gray-300 rounded-md">
+                  </div>
 
-                <div class="col-span-6 sm:col-span-3 py-3">
-                  <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                  <input type="text" name="email" id="email" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm xl:text-xl border-gray-300 rounded-md">
-                </div>
-              </div>
+                  <div class="col-span-6 sm:col-span-3 py-3">
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="text" name="survey[email]" id="email" autocomplete="given-name" placeholder="E-mail" class="p-2 mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm xl:text-xl border-gray-300 rounded-md">
+                  </div>
+                  
 
           
                   <button class="h-10 px-5 m-2 text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Complete survey</button>

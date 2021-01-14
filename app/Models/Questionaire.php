@@ -4,12 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Questionaire extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+
+    public function path()
+    {
+        return url('/questionaires/'. $this->id);
+    }
+
+    public function publicPath()
+    {
+        return url('/surveys/'. $this->id .'-'.Str::slug($this->slug) );
+    }
 
     public function user()
     {
@@ -28,7 +39,7 @@ class Questionaire extends Model
 
     public function surveys()
     {
-        return $this->hasMany(Surveys::class);
+        return $this->hasMany(Survey::class);
     }
 
 }

@@ -40,7 +40,64 @@
             </div>
 
 
-              
+            <div>
+                    
+
+                    @foreach($questionaire['questions'] as $answer)
+                        
+                        
+                        <div class="border list-none rounded-sm px-3 py-3 mb-4">
+
+                            <p class="font-bold mb-3">{{ $answer->question  }}</p>
+
+
+                                <ol class="list-decimal ml-4">
+                                    <li>
+                                        {{ $answer['answers'][0]->answer  }}
+                                        
+                                    </li>
+                                    <li>
+                                        {{ $answer['answers'][1]->answer  }}
+                                    </li>
+                                    <li>
+                                        {{ $answer['answers'][2]->answer  }}
+                                    </li>
+                                    <li>
+                                        {{ $answer['answers'][3]->answer  }}
+                                    </li>
+                                    <li>
+                                        {{ $answer['answers'][4]->answer  }}
+                                    </li>
+                                </ol>
+
+
+                            <form action="" method="">
+                                @method('DELETE')
+                                @csrf
+
+                                <a href="/questionaires/{{ $questionaire->id }}/questions/{{ $questionaires[1]->id }}" class="content-end">
+                                    <button class="h-7 px-2 mt-2 text-red-100 transition-colors duration-150 bg-red-700  focus:shadow-outline hover:bg-red-800">Delete Question
+                                        </button>
+                                </a>    
+                            </form>
+
+
+                                 
+                        </div>                        
+
+                    @endforeach
+                    
+
+
+
+                    
+
+                
+
+                
+
+
+            </div>    
 
         </div>
     </div>

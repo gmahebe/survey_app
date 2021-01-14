@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\QuestionaireController;
 
 use Illuminate\Http\Request;
-// use App\Questionaire;
-use App\Http\Controllers\Questionaire;
+use App\Models\Questionaire;
+use App\Models\Question;
 
 class QuestionController extends Controller
 {
@@ -22,9 +22,18 @@ class QuestionController extends Controller
     	]);
 
     	$question = $questionaire->questions()->create($data['question']); 
-dd($question->answers()->createMany());
     	$question->answers()->createMany($data['answers']);
 
     	return redirect('/questionaires/'.$questionaire->id);
+    }
+
+
+    public function destroy(\App\Models\Questionaire $questionaire, \App\Models\Question $question)
+    {
+        dd($question);
+        $questions->answers()->delete();
+        $questions->delete();
+        
+        return redirect($questionaire->path());
     }
 }

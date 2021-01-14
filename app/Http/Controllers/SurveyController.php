@@ -20,10 +20,29 @@ class SurveyController extends Controller
     }
 
 
-    public function store()
+    public function store( \App\Models\Questionaire $questionaire)
     {
-    	$survey = $questionaire->surveys()->create();
+        // dd(request()->all());
+
+        $data = request()->validate([
+            'responses.*.answer_id' => 'required',
+            'responses.*.question_id' => 'required',
+            'survey.name' => 'required',
+            'survey.email' => 'required|email',
+        ]);
+
+        $survey = $questionaire->surveys()->create($data['survey']);
+        $survey->responses()->createMany($data['responses']); 
+
+        // return 'Thank you';
+        return redirect('/')->with('status', 'Thank you!');
+
+
+    	
     }
+
+
+
 
 
 }
