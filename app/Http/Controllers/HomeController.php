@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\QuestionaireController;
 use App\Http\Controllers\Questionaire;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 
 class HomeController extends Controller
@@ -17,7 +18,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -28,11 +29,17 @@ class HomeController extends Controller
     public function index()
     {
         // dd('dd');
-        $user = auth()->user(); 
-        $results = \App\Models\Questionaire::with(['user'])->where('user_id', $user->id);
-        $questionaires = $results->get();
+        // auth()->check()
+        if (Auth::check()) {
+            $user = auth()->user(); 
+            $results = \App\Models\Questionaire::with(['user'])->where('user_id', $user->id);
+            $questionaires = $results->get();
 
-        return view('home', compact('questionaires'));
+            return view('home', compact('questionaires'));
+        }else{
+            return view('home');
+        }
+
 
     }
    

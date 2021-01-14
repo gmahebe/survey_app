@@ -30,40 +30,42 @@
 
         <section class="flex flex-col break-words bg-white sm:border-1 sm:rounded-md sm:shadow-sm sm:shadow-lg mt-5">
 
+            @auth
+                <div class="">
+                    <div class="p-3">
+                        <h1 class="mb-4 mt-4 text-bold"> My Questionaires</h1>
+                        <ul class="list-disc">
 
-            <div class="">
-                <div class="p-3">
-                    <h1 class="mb-4 mt-4 text-bold"> My Questionaires</h1>
-                    <ul class="list-disc">
+                            
 
-                        
+                            <?php //$user = Auth::user()->questionaires; ?>    
+                            
+                            @auth
 
-                        <?php //$user = Auth::user()->questionaires; ?>    
-                        
-                        @auth
-
-                            @foreach($questionaires as $questionaire)
-                                
-                                <li class="border list-none rounded-sm px-3 py-2 mt-1">  
-                                                        
-                                    <a href="{{ $questionaire->path() }}"> {{ $questionaire->title }} </a> 
+                                @foreach($questionaires as $questionaire)
                                     
-                                    <div class="mt-2">
-                                        <small class="">
-                                            <a href="$questionaire->publicPath()">Share Survey </br> {{ $questionaire->publicPath() }}</a>
-                                        </small>
-                                    </div>
-                                </li>
-                                
-                            @endforeach
+                                    <li class="border list-none rounded-sm px-3 py-2 mt-1">  
+                                                            
+                                        <a href="{{ $questionaire->path() }}"> {{ $questionaire->title }} </a> 
+                                        
+                                        <div class="mt-2">
+                                            <small class="">
+                                                <a href="$questionaire->publicPath()">Share Survey </br> {{ $questionaire->publicPath() }}</a>
+                                            </small>
+                                        </div>
+                                    </li>
+                                    
+                                @endforeach
 
-                        @endauth
-                        
-                    </ul>                  
-                  
+                            @endauth
+                            
+                        </ul>                  
+                      
+                    </div>
+                    
                 </div>
-                
-            </div>
+            @endauth
+
 
         </section>
     </div>

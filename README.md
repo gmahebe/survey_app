@@ -5,6 +5,7 @@ what is application?
 * users can post anonymously or they can login
 * users can login/register
 * users can delete their questions
+* survey urls can be copied and sent to others users to fill in.
 
 
 Install
